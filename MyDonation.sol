@@ -4,7 +4,6 @@ pragma solidity ^0.4.24;
 // The contract for the locaToken instance
 contract locaToken {
     function transferFrom(address _from, address _to, uint _value) public returns (bool);
-    function approve(address _spender, uint _value) public returns (bool);
     function allowance(address _owner, address _spender) public view returns (uint);
 }
 
