@@ -49,18 +49,18 @@ library SafeMath {
 contract Donation  {
     using SafeMath for uint;
     // instance the locatoken
-    locaToken private token = locaToken(0xEd1C9a256f5F84fA8ec7D29F66a0F1d32B3499dC);
+    locaToken private token = locaToken(0xcDf9bAff52117711B33210AdE38f1180CFC003ed);
     address  private owner;
 
     uint private _tokenGift;
     // every donation is logged in the Blockchain
-    event Donated(address buyer, uint tokens);
+    event Donated(address indexed buyer, uint tokens);
      // Available tokens for donation
     uint private _tokenDonation;
   
 
     // constructor to set the contract owner
-    constructor () public {
+    constructor() public {
 
         owner = msg.sender; 
     }
@@ -75,13 +75,13 @@ contract Donation  {
         require(_tokenDonation == 0);
         _;
     }
-    // There have to be 25000000000 Loca tokens in balance to proceed a valid donation
+    // There have at least to be 25000000000 Loca tokens in balance to allow a valid donation
     modifier allowDonation(){
         require(_tokenDonation >= 25000000000);
         _;
     }
     // Donation amount has to be between 0.02 and 0.03 ETH
-    // regardless the donation amount 250 LOCa's will be send 
+    // regardless the donation amount,  250 LOCAs will be send 
     modifier validDonation {
         require (msg.value >= 20000000000000000 && msg.value <= 30000000000000000);                                                                                        
         _;
@@ -127,7 +127,7 @@ contract Donation  {
     
     } 
 
-    function CloseSale() public onlyOwner {
+    function CloseDonation() public onlyOwner {
 
         selfdestruct(owner);
     }
